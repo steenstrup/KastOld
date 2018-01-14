@@ -7,11 +7,10 @@ namespace Kast.Models
 
         public string Name { get; set; }
 
-        public string ControllerName { get; set; }
-
-        public string ActionName { get; set; }
-        
         public string ThumnailImageUrl { get; set; }
 
+        public PageRedirector pageRedirector { get; set; }
+
+        public Category category { get; set; }
     }
 }

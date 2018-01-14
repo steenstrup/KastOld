@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Kast.Models;
+using System.Linq;
 
 namespace Kast.Controllers
 {
@@ -11,11 +12,11 @@ namespace Kast.Controllers
         {
             _topicRepository = topicRepository;
         }
-
-
-        public ViewResult List()
+        
+        public ViewResult Home(int id)
         {
-            return View(_topicRepository.Topics);
+            return View(_topicRepository.Topics.Where(x => x.category.PageType == (Page)id));
         }
+
     }
 }
