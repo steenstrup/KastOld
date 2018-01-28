@@ -1,7 +1,7 @@
 ﻿namespace Kast.Models
 {
 
-    public enum Page{ Home, Roll, Pape};
+    public enum Page{ Home, Roll, Pape, Char};
 
     public class Category
     {

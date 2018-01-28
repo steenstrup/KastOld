@@ -1,0 +1,68 @@
+﻿div.blocks {
+    background: #FFFFFF;
+    margin: 0px;
+    margin-right: 14px;
+    margin-bottom: 14px;
+    border: 1px solid #E8E8E8;
+    float: left;
+    text-align: center;
+    box-shadow: 3px 3px 5px #888888;
+    cursor: pointer;
+}
+
+div.blockText {
+    margin-top: 5px;
+    width: 220px;
+    height: 50px;
+    color: #A80000;
+    font-family: oblique;
+    font-size: 21px;
+    text-decoration: none;
+    
+}
+
+div.desription {
+    width: 200px;
+    padding: 20px;
+    border: 1px solid darkorange;
+    border-radius: 8px;
+    float: left;
+}
+
+div.skils {
+    width: 215px;
+    padding: 20px;
+    border: 1px solid darkorange;
+    border-radius: 8px;
+    float: left;
+}
+
+
+.stats {
+    width: 40px;
+    padding: 20px;
+    border: 1px solid darkorange;
+    border-radius: 8px;
+    float: left;
+}
+
+
+div.grid {
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+img {
+    /* filter: url(filters.svg#grayscale); Firefox 3.5+ */
+    filter: gray; /* IE5+ */
+    -webkit-filter: grayscale(1); /* Webkit Nightlies & Chrome Canary */
+    -webkit-transition: all .8s ease-in-out;
+    height: 220px;
+    width: 230px;
+}
+
+    img:hover {
+        filter: none;
+        -webkit-filter: grayscale(0);
+        -webkit-transform: scale(1.01);
+    }

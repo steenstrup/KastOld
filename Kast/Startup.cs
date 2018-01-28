@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Kast.Models;
+using Kast.Models.Mocks;
 
 namespace Kast
 {
@@ -12,8 +13,8 @@ namespace Kast
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ITopicRepository, MockTopicRepository>();
+            services.AddTransient<ICharecterRepository, MockCharecterRepository>();
             services.AddMvc();
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,8 +27,10 @@ namespace Kast
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
-
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{controller=Topic}/{action=Home}/{id?}");
+            });
         }
     }
 }

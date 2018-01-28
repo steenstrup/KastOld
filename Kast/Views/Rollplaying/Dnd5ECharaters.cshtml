@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DnD 5 Edition Charaters</title>
+</head>
+<body>
+    @foreach (var cha in Model)
+    {
+        <div class="desription">
+            <h3>@cha.PlayerName @cha.CharacterName</h3>
+            <h3>@cha.Race @cha.Background.Name</h3>
+            <h3>@cha.ClassesToString()</h3>
+        </div>
+
+        <div class="stats">
+            @foreach (var stat in cha.Stats)
+            {
+            <p>@stat.Value @stat.enumStat</p>
+                <p>@stat.Modifire</p>
+            }
+        </div>
+
+        <div class="skils">
+            @foreach (var skill in cha.Skills)
+            {
+            <p class="get">
+                @{
+        if (@skill.IsProfesion)
+        {<i class="fa fa-circle" style="font-size:16px;"></i>}
+else
+{<i class="fa fa-circle-o" style="font-size:16px;"></i>}
+ <span> &nbsp </span>
+if (@skill.GetValue() < 0)
+{<u><span style="font-size:20px"> @skill.GetValue() </span>&nbsp</u> }
+else
+{<u> &nbsp <span style="font-size:20px"> @skill.GetValue() </span>&nbsp</u> }
+                }
+                &nbsp @skill.Description
+                <span style="color:gainsboro"> (@skill.Stat.enumStat) </span>
+
+            </p>
+}
+        </div>
+
+    }
+</body>
+</html>
