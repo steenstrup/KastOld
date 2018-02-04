@@ -7,18 +7,21 @@ namespace Kast.Models.DnD5E
     public class Stat
     {
 
-        public Stat(EnumStats enustats, int value)
+        public Stat(EnumStats enustats, int value, string decription)
         {
-            enumStat = enustats;
+            EnumStat = enustats;
             Value = value;
+            Decription = decription;
             Modifire = (int)Math.Floor((value - 10) / 2.0);
         }
 
         public int Value;
 
-        public int Modifire { get; private set; }
+        public int Modifire { get;}
 
-        public EnumStats enumStat { get; private set; }
+        public EnumStats EnumStat { get; }
+
+        public string Decription { get; }
 
     }
 }

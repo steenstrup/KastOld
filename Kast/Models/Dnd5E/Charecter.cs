@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
+using Kast.Models.Dnd5E;
 
 namespace Kast.Models.DnD5E
 {
@@ -11,7 +12,8 @@ namespace Kast.Models.DnD5E
                 Race race,
                 Background background,
                 IEnumerable<DndClass> initClass,
-                IEnumerable<Stat> states)
+                IEnumerable<Stat> states,
+                int hp)
         {
             CharacterName = characterName;
             Background = background;
@@ -20,22 +22,20 @@ namespace Kast.Models.DnD5E
             Classes = initClass;
             Stats = states;
 
-            PopulateSavingThrows();
+            HitPoint = hp;
+            SavingThrows = InitSavingThrows();
             Skills = InitSkills();
             
         }
 
-        private void PopulateSavingThrows()
+        private List<SavingThrow> InitSavingThrows()
         {
             var savingThrows = new List<SavingThrow>();
             foreach (var stat in Stats)
             {
-                var savingThrowValue = stat.Modifire;
-                //if (Race.SavingThrowProf.Contains(stat.enumStat))
-                 //   savingThrowValue += ProfBonus;
-                savingThrows.Add(new SavingThrow(stat.enumStat, savingThrowValue));
+                savingThrows.Add(new SavingThrow(stat, Race, Classes, Background));
             }
-            SavingThrows = savingThrows;
+            return savingThrows;
         }
 
         private IEnumerable<Skill> InitSkills()
@@ -73,10 +73,11 @@ namespace Kast.Models.DnD5E
         public string PlayerName { get; set; }
         public Race Race { get; set; }
         public IEnumerable<DndClass> Classes { get; set; }
-        
         public IEnumerable<Stat> Stats { get; set; }
         public IEnumerable<SavingThrow> SavingThrows { get; set; }
         public IEnumerable<Skill> Skills { get; set; }
+
+
 
         public int ProfBonus { get
             {
@@ -86,22 +87,50 @@ namespace Kast.Models.DnD5E
 
         public int Initiative { get
             {
-                return Stats.Where(x => x.enumStat == EnumStats.Dex).First().Modifire;
+                var dexModifire = Stats.First(x => x.EnumStat == EnumStats.Dex).Modifire;
+                var extraModifire = Stats.First(x => x.EnumStat == EnumStats.Int).Modifire;
 
+                return dexModifire + extraModifire;
             }
         }
 
-        public int Speed { get; set; }
-        public int ArmorClass { get; set; }
+        public int Speed => 30;
+
+        public int ArmorClass => Equipments
+            .Where(x => x.IsEquipped)
+            .Sum(x => x.Ac) + 
+            Stats.First(x => x.EnumStat == EnumStats.Dex).Modifire;
+
+        public int Carring => Equipments.Select(x => x.Weight).Sum();
+
+        public int CarringCapasity => Stats.First(x => x.EnumStat == EnumStats.Str).Value * 15;
         public int HitPoint { get; set; }
 
         public int PassivePerception { get
             {
-                return 10 + ProfBonus + Stats.Where(x => x.enumStat == EnumStats.Wis).First().Modifire;
+                return 10 + ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Wis).Modifire;
             } }
 
-        public IEnumerable<string> FeaturesAndTraits { get; set; }
-        public IEnumerable<string> Languages { get; set; }
+        public int HirDice => Classes.Select(x => x.Level).Sum();
+
+        public IEnumerable<FeaturesAndTraits> FeaturesAndTraits => Classes
+            .Select(x => x.FeaturesAndTraitsProf)
+            .Aggregate((accum, next) => accum.Concat(next))
+            .Concat(Race.FeaturesAndTraitsProf)
+            .Concat(Background.FeaturesAndTraitsProf);
+        
+        public IEnumerable<string> ArmorToolAndWeaponProf => Classes
+            .Select(x => x.ArmorToolAndWeaponProf)
+            .Aggregate((accum, next) => accum.Concat(next))
+            .Concat(Race.ArmorToolAndWeaponProf)
+            .Concat(Background.ArmorToolAndWeaponProf);
+
+        public IEnumerable<string> Languages => Classes
+            .Select(x => x.LanguageProf)
+            .Aggregate((accum, next) => accum.Concat(next))
+            .Concat(Race.LanguageProf)
+            .Concat(Background.LanguageProf);
+
         public IEnumerable<string> Professions { get; set; }
         public Money Money { get; set; }
 
@@ -110,7 +139,7 @@ namespace Kast.Models.DnD5E
         public string ClassesToString() => Classes.Select(x => x.Name + " " + x.Level)
                 .Aggregate((accum, next) => accum + " / " + next);
 
-
+        public IEnumerable<Equipment> Equipments { get; set; }
 
     }
 }

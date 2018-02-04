@@ -20,9 +20,9 @@ namespace Kast.Models.DnD5E
             Stat = stat;
         }
                 
-        private IProfesion _race;
-        private IProfesion _background;
-        private IEnumerable<DndClass> _dndClasses;
+        private readonly IProfesion _race;
+        private readonly IProfesion _background;
+        private readonly IEnumerable<DndClass> _dndClasses;
         public Stat Stat;
 
         private int NumberOfProfisionOnSkill()
@@ -32,7 +32,7 @@ namespace Kast.Models.DnD5E
                 .Concat(_race.SkillProf)
                 .Concat(_background.SkillProf);
 
-            return skillProfList.Where(x => x == Description).Count();
+            return skillProfList.Count(x => x == Description);
         }
 
         public string Description { get; private set; }

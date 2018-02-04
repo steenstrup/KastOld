@@ -12,42 +12,140 @@
 <body>
     @foreach (var cha in Model)
     {
-        <div class="desription">
-            <h3>@cha.PlayerName @cha.CharacterName</h3>
-            <h3>@cha.Race @cha.Background.Name</h3>
-            <h3>@cha.ClassesToString()</h3>
+
+        <div class="grid-container">
+            <div class="item1">
+                <div class="desription">
+                    <h2>@cha.CharacterName</h2>
+                </div>
+
+                <div class="desription">
+                    <img src="https://cf.geekdo-images.com/images/pic1670522.jpg">
+                </div>
+
+                <div class="desription">
+                    <h3>@cha.PlayerName</h3>
+                    <h3>@cha.Race @cha.Background.Name</h3>
+                    <h3>@cha.ClassesToString()</h3>
+                </div>
+
+
+
+            </div>
+
+            <div class="item2">
+                <div class="stats">
+                    <h3 style="text-align: center">Stats</h3>
+                    @foreach (var stat in cha.Stats)
+                    {
+                        <p style="text-align: center">@stat.Decription</p>
+                        <p style="text-align: center; font-size: 30px; line-height: 0px">@stat.Value</p>
+                        <p style="text-align: center">@stat.Modifire</p>
+                    }
+                </div>
+            </div>
+
+            <div class="item3">
+
+                <div class="skils">
+                    <p>Armor Class @cha.ArmorClass</p>
+                    <p>Initative @cha.Initiative</p>
+                    <p>Speed @cha.Speed</p>
+                    <p>Hit Point @cha.HitPoint</p>
+                    <p>Passive Perception @cha.PassivePerception</p>
+                    <p>Proficiency Bonus @cha.ProfBonus</p>
+                    <p>Hit Dice @cha.HirDice</p>
+                    <p>Carring @cha.CarringCapasity / @cha.Carring</p>
+                </div>
+
+                <div class="skils">
+                    <h3 style="text-align: center">Skills</h3>
+                    @foreach (var skill in cha.Skills)
+                    {
+                        <p>
+                            @{
+                                if (@skill.IsProfesion)
+                                {<i class="fa fa-circle" style="font-size: 16px;"></i>}
+                                else
+                                {<i class="fa fa-circle-o" style="font-size: 16px;"></i>}
+                                <span> &nbsp; </span>
+                                if (@skill.GetValue() < 0)
+                                {<span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
+                            }
+                            else
+                            {
+                                <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
+                            }
+                            }
+                            @skill.Description
+                            <span style="color: gainsboro"> (@skill.Stat.EnumStat) </span>
+                        </p>
+                    }
+                </div>
+
+                <div class="skils">
+                    <h3 style="text-align: center">Saving Throws</h3>
+                    @foreach (var savingThrow in cha.SavingThrows)
+                    {
+                        <p>
+                            @{
+                                if (@savingThrow.IsProfesion())
+                                {<i class="fa fa-circle" style="font-size: 16px;"></i>}
+                                else
+                                {<i class="fa fa-circle-o" style="font-size: 16px;"></i>}
+                                <span> &nbsp; </span>
+                                if (@savingThrow.GetValue() < 0)
+                                {<span style="font-size: 20px; text-decoration: underline;"> @savingThrow.GetValue() &nbsp;</span>
+                            }
+                            else
+                            {
+                                <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @savingThrow.GetValue() &nbsp;</span>
+                            }
+                            }
+                            @savingThrow.Stat.Decription
+                        </p>
+                    }
+                </div>
+            </div>
+
+            <div class="item4">
+                <div class="right">
+                    <h3 style="text-align: center">Languages</h3>
+                    @foreach (var prof in cha.Languages)
+                    {
+                        <p>@prof</p>
+                    }
+                </div>
+
+                <div class="right">
+                    <h3 style="text-align: center">Features & Traits</h3>
+                    @foreach (var featuresAndTraits in cha.FeaturesAndTraits)
+                    {
+                        <p>@featuresAndTraits.Name</p>
+                    }
+                </div>
+
+
+            </div>
+
+            <div class="item5">
+
+                <div class="right">
+                    <h3 style="text-align: center">Weapon, Armor and Tools profiencies</h3>
+                    @foreach (var prof in cha.ArmorToolAndWeaponProf)
+                    {
+                        <p>@prof</p>
+                    }
+                </div>
+                <div class="right">
+                    <h3 style="text-align: center">Equipment</h3>
+                    @foreach (var equipment in cha.Equipments)
+                    {
+                        <p>@equipment.Name</p>
+                    }
+                </div>
+            </div>
         </div>
-
-        <div class="stats">
-            @foreach (var stat in cha.Stats)
-            {
-            <p>@stat.Value @stat.enumStat</p>
-                <p>@stat.Modifire</p>
-            }
-        </div>
-
-        <div class="skils">
-            @foreach (var skill in cha.Skills)
-            {
-            <p class="get">
-                @{
-        if (@skill.IsProfesion)
-        {<i class="fa fa-circle" style="font-size:16px;"></i>}
-else
-{<i class="fa fa-circle-o" style="font-size:16px;"></i>}
- <span> &nbsp </span>
-if (@skill.GetValue() < 0)
-{<u><span style="font-size:20px"> @skill.GetValue() </span>&nbsp</u> }
-else
-{<u> &nbsp <span style="font-size:20px"> @skill.GetValue() </span>&nbsp</u> }
-                }
-                &nbsp @skill.Description
-                <span style="color:gainsboro"> (@skill.Stat.enumStat) </span>
-
-            </p>
-}
-        </div>
-
     }
 </body>
 </html>

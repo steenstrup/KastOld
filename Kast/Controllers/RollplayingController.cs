@@ -1,6 +1,7 @@
 ﻿using Kast.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Kast.Models.Repositorys;
 
 namespace Kast.Controllers 
 {

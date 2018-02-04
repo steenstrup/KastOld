@@ -7,5 +7,10 @@ namespace Kast.Models.DnD5E
     {
         public string Name { get; set; }
         public IEnumerable<string> SkillProf { get; set; }
+        public IEnumerable<string> ItemProf { get; set; }
+        public IEnumerable<string> LanguageProf { get; set; }
+        public IEnumerable<Stat> SavingThrowProf { get; set; }
+        public IEnumerable<string> ArmorToolAndWeaponProf { get; set; }
+        public IEnumerable<FeaturesAndTraits> FeaturesAndTraitsProf { get; set; }
     }
 }

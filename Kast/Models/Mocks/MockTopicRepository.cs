@@ -84,9 +84,9 @@ namespace Kast.Models
                         pageRedirector = new PageRedirector("Rollplaying", "Dnd5ECharaters", 0){PageRedirectorId=0},
                         ThumnailImageUrl ="/Images/Rollplaying/Ajaton.jpg"},
 
-                     new Topic{ TopicId = 5, Name = "Akesera", category = charitorCategory,
+                     new Topic{ TopicId = 5, Name = "Akercera", category = charitorCategory,
                         pageRedirector = new PageRedirector("Rollplaying", "Dnd5ECharaters", 1){PageRedirectorId=0},
-                        ThumnailImageUrl = "/Images/Rollplaying/Akesera.jpg"},
+                        ThumnailImageUrl = "https://cf.geekdo-images.com/images/pic1670522.jpg"},
 
                      new Topic{ TopicId = 5, Name = "Birgita", category = charitorCategory,
                         pageRedirector = new PageRedirector("Rollplaying", "Dnd5ECharaters", 2){PageRedirectorId=0},

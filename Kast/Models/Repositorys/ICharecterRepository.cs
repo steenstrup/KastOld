@@ -1,13 +1,13 @@
-﻿using Kast.Models.DnD5E;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Kast.Models.DnD5E;
 
-namespace Kast.Models
+namespace Kast.Models.Repositorys
 {
     public interface ICharecterRepository
     {
 
         IEnumerable<Character> Charecters { get; }
 
-        Topic GetTopicCharecterId(int charecterId);
+        Topic GetCharecterId(int charecterId);
     }
 }

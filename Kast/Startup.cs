@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Kast.Models;
 using Kast.Models.Mocks;
+using Kast.Models.Repositorys;
 
 namespace Kast
 {
