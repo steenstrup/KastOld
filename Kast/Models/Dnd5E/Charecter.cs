@@ -112,7 +112,7 @@ namespace Kast.Models.DnD5E
             } }
 
         public int HirDice => Classes.Select(x => x.Level).Sum();
-
+        
         public IEnumerable<FeaturesAndTraits> FeaturesAndTraits => Classes
             .Select(x => x.FeaturesAndTraitsProf)
             .Aggregate((accum, next) => accum.Concat(next))
@@ -140,6 +140,16 @@ namespace Kast.Models.DnD5E
                 .Aggregate((accum, next) => accum + " / " + next);
 
         public IEnumerable<Equipment> Equipments { get; set; }
+
+        public IEnumerable<Spell> Spells { get; set; }
+        public IEnumerable<Spell> Cantrips => Spells.Where(x => x.Level == 0);
+        public IEnumerable<Spell> Spellslvl1 => Spells.Where(x => x.Level == 1);
+        public IEnumerable<Spell> Spellslvl2 => Spells.Where(x => x.Level == 2);
+
+        public int SpellIntBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Int).First().Modifire;
+        public int SpellWisBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Wis).First().Modifire;
+        public int SpellChaBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Cha).First().Modifire;
+
 
     }
 }

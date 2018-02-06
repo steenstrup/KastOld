@@ -48,8 +48,11 @@ namespace Kast.Models.Dnd5E
 
         // Weapon information
         public WeaponType WeaponType { get; private set; }
+
         public string Damage { get; set; }
+
         public string DamageType { get; set; }
+
         public string WeaponProperties { get; set; }
         
         public Equipment(string name, BodySlots bodyslot, int cost, int weight)

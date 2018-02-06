@@ -110,21 +110,21 @@ namespace Kast.Models.Mocks
                     })
                     .Union(EquipmentsBuilder.DefualdEquipmentBuilder().LoadAdventuringGear().Build().Where(x => backpack.Contains(x.Name)));
 
-                /*
-                var equipment = new List<Equipment>()
-                {
-                    
-                    new Equipment("Trap builder kit", false, BodySlots.Backpack, 0),
-                    new Equipment("10 GP", false, BodySlots.Backpack, 0),
-                };
-                */
+                var cantrip = new List<string> { "Light", "Fire Bolt", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation" };
+                var lvl1Spell = new List<string> { "Chromatic Orb", "Detect Magic", "Expeditious Retreat", "Feather Fall", "Find Familiar", "Identify", "Shield", "Sleep", "Tenser's Floating Disk", "Unseen Servant"};
+                var lvl2Spell = new List<string> { "Blur", "Rope Trick", "Suggestion", "Skywrite" };
 
+                var spells = SpellBuilder.DefualdSpellBuilder()
+                    .LoadCantrip().LoadLvl1Spell().LoadLvl2Spell().Build()
+                    .Where(x => cantrip.Contains(x.Name) || lvl1Spell.Contains(x.Name) || lvl2Spell.Contains(x.Name));
+                
                 return new List<Character>()
                 {
                     new Character("Akercera", "Kasper Steenstrup", race, backgrund, classes, stats, 37)
                     {
                         CharacterId = 1,
-                        Equipments = equipment
+                        Equipments = equipment,
+                        Spells = spells
                     }
                 };
             }

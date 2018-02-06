@@ -46,7 +46,8 @@ div.right {
 div.stats {
     width: 140px;
     padding: 10px;
-    border: 1px solid gainsboro;
+    border: 20px solid;
+    border-image: url(http://www.stickpng.com/assets/images/5856a5e34f6ae202fedf2765.png) 100;
     border-radius: 8px;
     position: relative;
 }
@@ -80,16 +81,25 @@ img {
 
 .grid-container {
     display: grid;
-    grid-template-areas: 
-                       'header main main main right footer'
-                       'menu main main main right footer'
-                       'menu main main main right footer';
-    grid-gap: 10px; 
+    grid-template-areas: 'header main main main right footer' 'menu main main main right footer' 'menu main main main right footer';
+    grid-gap: 10px;
     padding: 10px;
-    size: 7in 9.25in;
+    width: 210mm;
+    height: 410mm;
 }
 
     .grid-container > div {
         display: table;
         margin: 0 auto;
     }
+
+
+div.backgrund {
+    width: 210mm;
+    height: 410mm;
+}
+
+div.spellOverview {
+    width: 210mm;
+    height: 410mm;
+}
