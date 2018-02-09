@@ -49,6 +49,22 @@ namespace Kast.Models.Dnd5E
             Damage = damage;
             DamageType = damageType;
         }
+
+        public string OverviewText()
+        {
+            var res = Name;
+
+            if (Retual)
+                res += "(r)";
+
+            if (Damage != "")
+                res += " " + Damage + " " + DamageType; 
+
+
+            return res;
+        }
+
+
     }
 
     public class SpellBuilder
@@ -76,7 +92,7 @@ namespace Kast.Models.Dnd5E
 
             _spell.Add(new Spell("Fire Bolt",
                 "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
-                "Fire Bolt flow from you hand", "?", "", t, 0, "120 feet", "1 action", "Instantaneous", true, false, "1d10", "Fire"));
+                "Fire Bolt flow from you hand", "?", "", t, 0, "120 feet", "1 action", "Instantaneous", true, false, "2d10", "Fire"));
 
             _spell.Add(new Spell("Mage Hand",
                "A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again. You can use your action to control the hand.You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial.You can move the hand up to 30 feet each time you use it.The hand can't attack, activate magic items, or carry more than 10 pounds.",
@@ -107,15 +123,15 @@ namespace Kast.Models.Dnd5E
 
             // wizzard
             _spell.Add(new Spell("Chromatic Orb", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "3d8", "Pick one"));
-            _spell.Add(new Spell("Detect Magic", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Detect Magic", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
             _spell.Add(new Spell("Expeditious Retreat", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Feather Fall", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
-            _spell.Add(new Spell("Find Familiar", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
-            _spell.Add(new Spell("Identify", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Find Familiar", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
+            _spell.Add(new Spell("Identify", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
             _spell.Add(new Spell("Shield", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Sleep", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
-            _spell.Add(new Spell("Tenser's Floating Disk", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
-            _spell.Add(new Spell("Unseen Servant", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Tenser's Floating Disk", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
+            _spell.Add(new Spell("Unseen Servant", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
 
             return this;
         }
@@ -128,7 +144,7 @@ namespace Kast.Models.Dnd5E
             _spell.Add(new Spell("Blur", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Rope Trick", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Suggestion", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
-            _spell.Add(new Spell("Skywrite", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Skywrite", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, true, "", ""));
 
             return this;
         }

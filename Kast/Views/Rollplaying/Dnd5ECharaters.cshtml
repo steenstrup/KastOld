@@ -112,30 +112,30 @@
                 <div class="right">
                     <h3 style="text-align: center">Attaks and SpellCasting</h3>
                     @foreach (var equipment in cha.Equipments.Where(x => x.IsEquipped).Where(x => x.Damage != null))
-    {
-                <p>@equipment.Name -- @cha.ProfBonus -- @equipment.Damage / @equipment.DamageType</p>
-}
-                    
+                    {
+                        <p>@equipment.Name -- @cha.ProfBonus -- @equipment.Damage / @equipment.DamageType</p>
+                    }
+
                     @foreach (var spell in @cha.Spells.Where(x => x.Prepart).Where(x => x.Damage != ""))
                     {
-                <p>@spell.Name -- @cha.SpellIntBonus -- @spell.Damage / @spell.DamageType</p>
-}
+                        <p>@spell.Name -- @cha.SpellIntBonus -- @spell.Damage / @spell.DamageType</p>
+                    }
                 </div>
 
                 <div class="right">
                     <h3 style="text-align: center">Languages</h3>
                     @foreach (var prof in cha.Languages)
-        {
-            <p>@prof</p>
-}
+                    {
+                        <p>@prof</p>
+                    }
                 </div>
 
                 <div class="right">
                     <h3 style="text-align: center">Features & Traits</h3>
                     @foreach (var featuresAndTraits in cha.FeaturesAndTraits)
-        {
-            <p>@featuresAndTraits.Name</p>
-}
+                    {
+                        <p>@featuresAndTraits.Name</p>
+                    }
                 </div>
 
 
@@ -146,20 +146,20 @@
                 <div class="right">
                     <h3 style="text-align: center">Weapon, Armor and Tools profiencies</h3>
                     @foreach (var prof in cha.ArmorToolAndWeaponProf)
-        {
-            <p>@prof</p>
-}
+                    {
+                        <p>@prof</p>
+                    }
                 </div>
 
                 <div class="right">
                     <h3 style="text-align: center">Equipment</h3>
                     @foreach (var equipment in cha.Equipments)
-        {
-            <p>@equipment.Name</p>
-}
+                    {
+                        <p>@equipment.Name</p>
+                    }
                 </div>
 
-                
+
             </div>
         </div>
 
@@ -171,26 +171,31 @@
                 <h1>Cantrips</h1>
                 @foreach (var spell in cha.Cantrips)
                 {
-                    <p>@spell.Name</p>
+                    <p>@spell.OverviewText()</p>
                 }
             </div>
 
             <div class="right">
                 <h1>Level 1 spell</h1>
                 @foreach (var spell in cha.Spellslvl1)
-                {
-                    <p>@spell.Name</p>
-                }
+    {
+            <p>
+                <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                @spell.OverviewText()
+            </p>
+}
             </div>
 
             <div class="right">
                 <h1>Level 2 spell</h1>
                 @foreach (var spell in cha.Spellslvl2)
                 {
-                    <p>@spell.Name</p>
+                <p>
+                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                    @spell.OverviewText()
+                </p>
                 }
             </div>
-
         </div>
 
         <p></p>
