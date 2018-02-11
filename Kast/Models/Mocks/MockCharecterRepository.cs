@@ -110,13 +110,15 @@ namespace Kast.Models.Mocks
                     })
                     .Union(EquipmentsBuilder.DefualdEquipmentBuilder().LoadAdventuringGear().Build().Where(x => backpack.Contains(x.Name)));
 
-                var cantrip = new List<string> { "Light", "Fire Bolt", "Mage Hand", "Mending", "Message", "Minor Illusion", "Prestidigitation" };
-                var lvl1Spell = new List<string> { "Chromatic Orb", "Detect Magic", "Expeditious Retreat", "Feather Fall", "Find Familiar", "Identify", "Shield", "Sleep", "Tenser's Floating Disk", "Unseen Servant"};
-                var lvl2Spell = new List<string> { "Blur", "Rope Trick", "Suggestion", "Skywrite" };
+                var cantrip = new List<string> { "Light", "Fire Bolt", "Mending", "Message", "Minor Illusion", "Prestidigitation", "Guidance", "Thaumaturgy" };
+                var lvl1Spell = new List<string> { "Arnold's World snap", "Chromatic Orb", "Detect Magic", "Expeditious Retreat", "Feather Fall", "Find Familiar", "Identify", "Shield", "Sleep", "Tenser's Floating Disk", "Unseen Servant"};
+                var lvl1ClericSpell = new List<string> { "Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Poison and Disease", "Guiding Bold", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"};
+
+                var lvl2Spell = new List<string> { "Belfor's Heavy Crush", "Weight of the world", "Blur", "Rope Trick", "Suggestion", "Skywrite" };
 
                 var spells = SpellBuilder.DefualdSpellBuilder()
                     .LoadCantrip().LoadLvl1Spell().LoadLvl2Spell().Build()
-                    .Where(x => cantrip.Contains(x.Name) || lvl1Spell.Contains(x.Name) || lvl2Spell.Contains(x.Name));
+                    .Where(x => cantrip.Contains(x.Name) || lvl1Spell.Contains(x.Name) || lvl1ClericSpell.Contains(x.Name)|| lvl2Spell.Contains(x.Name));
                 
                 return new List<Character>()
                 {

@@ -8,12 +8,12 @@ namespace Kast.Models.DnD5E
     public class Character
     {
         public Character(string characterName,
-                string playername,
-                Race race,
-                Background background,
-                IEnumerable<DndClass> initClass,
-                IEnumerable<Stat> states,
-                int hp)
+            string playername,
+            Race race,
+            Background background,
+            IEnumerable<DndClass> initClass,
+            IEnumerable<Stat> states,
+            int hp)
         {
             CharacterName = characterName;
             Background = background;
@@ -25,7 +25,7 @@ namespace Kast.Models.DnD5E
             HitPoint = hp;
             SavingThrows = InitSavingThrows();
             Skills = InitSkills();
-            
+
         }
 
         private List<SavingThrow> InitSavingThrows()
@@ -58,7 +58,7 @@ namespace Kast.Models.DnD5E
             skills.Add(new Skill("Nature", statsList[3], Race, Classes, Background));
             skills.Add(new Skill("Perception", statsList[4], Race, Classes, Background));
             skills.Add(new Skill("Performance", statsList[5], Race, Classes, Background));
-            skills.Add(new Skill("Persuasion",  statsList[5], Race, Classes, Background));
+            skills.Add(new Skill("Persuasion", statsList[5], Race, Classes, Background));
             skills.Add(new Skill("Religion", statsList[3], Race, Classes, Background));
             skills.Add(new Skill("SleightOfHand", statsList[1], Race, Classes, Background));
             skills.Add(new Skill("Stealth", statsList[1], Race, Classes, Background));
@@ -79,13 +79,14 @@ namespace Kast.Models.DnD5E
 
 
 
-        public int ProfBonus { get
-            {
-                return (int)Math.Ceiling(Classes.Select(x => x.Level).Sum() / 2.0);
-            }
+        public int ProfBonus
+        {
+            get { return (int) Math.Ceiling(Classes.Select(x => x.Level).Sum() / 2.0); }
         }
 
-        public int Initiative { get
+        public int Initiative
+        {
+            get
             {
                 var dexModifire = Stats.First(x => x.EnumStat == EnumStats.Dex).Modifire;
                 var extraModifire = Stats.First(x => x.EnumStat == EnumStats.Int).Modifire;
@@ -97,28 +98,28 @@ namespace Kast.Models.DnD5E
         public int Speed => 30;
 
         public int ArmorClass => Equipments
-            .Where(x => x.IsEquipped)
-            .Sum(x => x.Ac) + 
-            Stats.First(x => x.EnumStat == EnumStats.Dex).Modifire;
+                                     .Where(x => x.IsEquipped)
+                                     .Sum(x => x.Ac) +
+                                 Stats.First(x => x.EnumStat == EnumStats.Dex).Modifire;
 
         public int Carring => Equipments.Select(x => x.Weight).Sum();
 
         public int CarringCapasity => Stats.First(x => x.EnumStat == EnumStats.Str).Value * 15;
         public int HitPoint { get; set; }
 
-        public int PassivePerception { get
-            {
-                return 10 + ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Wis).Modifire;
-            } }
+        public int PassivePerception
+        {
+            get { return 10 + ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Wis).Modifire; }
+        }
 
         public int HirDice => Classes.Select(x => x.Level).Sum();
-        
+
         public IEnumerable<FeaturesAndTraits> FeaturesAndTraits => Classes
             .Select(x => x.FeaturesAndTraitsProf)
             .Aggregate((accum, next) => accum.Concat(next))
             .Concat(Race.FeaturesAndTraitsProf)
             .Concat(Background.FeaturesAndTraitsProf);
-        
+
         public IEnumerable<string> ArmorToolAndWeaponProf => Classes
             .Select(x => x.ArmorToolAndWeaponProf)
             .Aggregate((accum, next) => accum.Concat(next))
@@ -135,20 +136,47 @@ namespace Kast.Models.DnD5E
         public Money Money { get; set; }
 
         public string History { get; set; }
-        
+
         public string ClassesToString() => Classes.Select(x => x.Name + " " + x.Level)
-                .Aggregate((accum, next) => accum + " / " + next);
+            .Aggregate((accum, next) => accum + " / " + next);
 
         public IEnumerable<Equipment> Equipments { get; set; }
 
         public IEnumerable<Spell> Spells { get; set; }
-        public IEnumerable<Spell> Cantrips => Spells.Where(x => x.Level == 0);
-        public IEnumerable<Spell> Spellslvl1 => Spells.Where(x => x.Level == 1);
-        public IEnumerable<Spell> Spellslvl2 => Spells.Where(x => x.Level == 2);
 
-        public int SpellIntBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Int).First().Modifire;
-        public int SpellWisBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Wis).First().Modifire;
-        public int SpellChaBonus => ProfBonus + Stats.Where(x => x.EnumStat == Kast.Models.DnD5E.EnumStats.Cha).First().Modifire;
+        public IEnumerable<Spell> GetSpellByLevel(int i)
+        {
+            return Spells.Where(x => x.Level == i);
+        }
+
+        public int GetSpellSlotByLevel(int i)
+        {
+            if (i == 0)
+                return 0;
+            var sumLevel = Classes.Select(x => x.Level).Sum();
+
+            switch (i)
+            {
+                case 1:
+                    if (sumLevel == 1)
+                        return 2;
+                    return sumLevel == 2 ? 3 : 4;
+                case 2:
+                    if (sumLevel < 3)
+                        return 0;
+                    return sumLevel == 3 ? 2 : 3;
+                case 3:
+                    if (sumLevel < 5)
+                        return 0;
+                    return sumLevel == 5 ? 2 : 3;
+            }
+
+            return 0;
+        }
+        
+        public int SpellIntBonus => ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Int).Modifire;
+        public int SpellWisBonus => ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Wis).Modifire;
+        public int SpellChaBonus => ProfBonus + Stats.First(x => x.EnumStat == EnumStats.Cha).Modifire;
 
 
     }

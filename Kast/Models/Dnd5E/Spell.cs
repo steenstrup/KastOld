@@ -4,47 +4,30 @@ namespace Kast.Models.Dnd5E
 {
     public class Spell
     {
-        public string Name { get; }
+        public int SpellId { get; set; }
+        public string Name { get; set; }
+        public int Level { get; set; }
+        public string Schole { get; set; }
+        public bool Retual { get; set; }
+        public string CastingTime { get; set; }
+        public string Range { get; set; }
+        public string Components { get; set; }
+        public string Duration { get; set; }
+        public string Description { get; set; }
+        public string Damage { get; set; }
+        public string DamageType { get; set; }
 
-        public string Description { get; }
-
-        public string ShortDescription { get; }
-
-        public string Schole { get; }
-
-        public string Materials { get; }
-
-        public IEnumerable<string> InClass { get; }
-
-        public int Level { get; }
-
-        public string Range { get; }
-
-        public string CastingTime { get; }
-
-        public string Duration { get; }
-
-        public bool Prepart { get; }
-
-        public bool Retual { get; }
-
-        public string Damage { get; }
-
-        public string DamageType { get; }
-
-        public Spell(string name, string decription, string shortDecription, string schole, string materials, IEnumerable<string> inClass, int level, string range, string castingTime, string duration, bool prepart, bool retual, string damage , string damageType)
+        /*
+        public Spell(string name, string decription, string schole, string components, int level, string range, string castingTime, string duration, bool retual, string damage, string damageType)
         {
             Name = name;
             Description = decription;
-            ShortDescription = shortDecription;
             Schole = schole;
-            Materials = materials;
-            InClass = inClass;
+            Components = components;
             Level = level;
             Range = range;
             CastingTime = castingTime;
             Duration = duration;
-            Prepart = prepart;
             Retual = retual;
             Damage = damage;
             DamageType = damageType;
@@ -59,12 +42,10 @@ namespace Kast.Models.Dnd5E
 
             if (Damage != "")
                 res += " " + Damage + " " + DamageType; 
-
-
+            
             return res;
         }
-
-
+        */
     }
 
     public class SpellBuilder
@@ -83,12 +64,13 @@ namespace Kast.Models.Dnd5E
 
         public SpellBuilder LoadCantrip()
         {
+            /*
             var t = new List<string> { "wizzard" };
 
             // wizzard
             _spell.Add(new Spell("Light",
                 "You touch one object that is no larger than 10 feet in any dimension. Until the spell ends, the object sheds bright light in a 20-foot radius and dim light for an additional 20 feet. The light can be colored as you like. Completely covering the object with something opaque blocks the light. The spell ends if you cast it again or dismiss it as an action. If you target an object held or worn by a hostile creature, that creature must succeed on a Dexterity saving throw to avoid the spell.",
-                "Small item ligth on touch", "?", "", t, 0, "Touch", "1 action", "1 hour", true, false, "", ""));
+                "Small item ligth on touch", "?", "", 0, "Touch", "1 action", "1 hour", true, false, "", ""));
 
             _spell.Add(new Spell("Fire Bolt",
                 "You hurl a mote of fire at a creature or object within range. Make a ranged spell attack against the target. On a hit, the target takes 1d10 fire damage. A flammable object hit by this spell ignites if it isn't being worn or carried. This spell's damage increases by 1d10 when you reach 5th level (2d10), 11th level (3d10), and 17th level (4d10).",
@@ -114,11 +96,17 @@ namespace Kast.Models.Dnd5E
 "This spell is a minor magical trick that novice spell-casters use for practice. You create one of the following magical effects within range: You create an instantaneous, harmless sensory effect, such as a shower of sparks, a puff of wind, faint musical notes, or an odd odor. You instantaneously light or snuff out a candle, a torch, or a small campfire. You instantaneously clean or soil an object no larger than 1 cubic foot. You chill, warm, or flavor up to 1 cubic foot of nonliving material for 1 hour. You make a color, a small mark, or a symbol appear on an object or a surface for 1 hour. You create a nonmagical trinket or an illusory image that can fit in your hand and that lasts until the end of your next turn. If you cast this spell multiple times, you can have up to three of its non - instantaneous effects active at a time, and you can dismiss such an effect as an action.",
 "Prestidigitation", "?", "", t, 0, "10 feet", "1 action", " Up to 1 hour", true, false, "", ""));
 
+
+            _spell.Add(new Spell("Guidance","","Small item ligth on touch", "?", "", t, 0, "Touch", "1 action", "1 hour", true, false, "", ""));
+            
+
+            _spell.Add(new Spell("Thaumaturgy", "", "Small item ligth on touch", "?", "", t, 0, "Touch", "1 action", "1 hour", true, false, "", ""));
+            */
             return this;
         }
 
         public SpellBuilder LoadLvl1Spell()
-        {
+        { /*
             var t = new List<string> { "wizzard" };
 
             // wizzard
@@ -132,12 +120,32 @@ namespace Kast.Models.Dnd5E
             _spell.Add(new Spell("Sleep", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Tenser's Floating Disk", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
             _spell.Add(new Spell("Unseen Servant", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, true, "", ""));
+            _spell.Add(new Spell("Arnold's World snap", "", "", "?", "", t, 1, "self", "1 action", "instantaneous", true, false, "", ""));
+
+            t = new List<string> { "Cleric" };
+            // Cleric
+            _spell.Add(new Spell("Bane", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Bless", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Command", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Create or Destroy Water", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Cure Wounds", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Detect Evil and Good", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Detect Poison and Disease", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Guiding Bold", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Healing Word", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Inflict Wounds", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Protection from Evil and Good", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Purify Food and Drink", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Sanctuary", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            _spell.Add(new Spell("Shield of Faith", "", "", "?", "", t, 1, "Touch", "1 action", "1 hour", true, false, "", ""));
+            */
 
             return this;
         }
 
         public SpellBuilder LoadLvl2Spell()
         {
+            /*
             var t = new List<string> { "wizzard" };
 
             // wizzard
@@ -145,7 +153,9 @@ namespace Kast.Models.Dnd5E
             _spell.Add(new Spell("Rope Trick", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Suggestion", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, false, "", ""));
             _spell.Add(new Spell("Skywrite", "", "", "?", "", t, 2, "Touch", "1 action", "1 hour", true, true, "", ""));
-
+            _spell.Add(new Spell("Weight of the world", "", "", "?", "", t, 2, "60 feet", "1 action", "consentration, up to 1 minuts", true, false, "", ""));
+            _spell.Add(new Spell("Belfor's Heavy Crush", "", "", "?", "", t, 2, "self", "1 action", "instantaneous", true, false, "", ""));
+            */
             return this;
         }
 

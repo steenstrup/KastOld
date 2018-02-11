@@ -65,17 +65,22 @@
                         <p>
                             @{
                                 if (@skill.IsProfesion)
-                                {<i class="fa fa-circle" style="font-size: 16px;"></i>}
+                                {
+                                    <i class="fa fa-circle" style="font-size: 16px;"></i>
+                                }
                                 else
-                                {<i class="fa fa-circle-o" style="font-size: 16px;"></i>}
+                                {
+                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                                }
                                 <span> &nbsp; </span>
                                 if (@skill.GetValue() < 0)
-                                {<span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
-                            }
-                            else
-                            {
-                                <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
-                            }
+                                {
+                                    <span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
+                                }
+                                else
+                                {
+                                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
+                                }
                             }
                             @skill.Description
                             <span style="color: gainsboro"> (@skill.Stat.EnumStat) </span>
@@ -90,17 +95,22 @@
                         <p>
                             @{
                                 if (@savingThrow.IsProfesion())
-                                {<i class="fa fa-circle" style="font-size: 16px;"></i>}
+                                {
+                                    <i class="fa fa-circle" style="font-size: 16px;"></i>
+                                }
                                 else
-                                {<i class="fa fa-circle-o" style="font-size: 16px;"></i>}
+                                {
+                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                                }
                                 <span> &nbsp; </span>
                                 if (@savingThrow.GetValue() < 0)
-                                {<span style="font-size: 20px; text-decoration: underline;"> @savingThrow.GetValue() &nbsp;</span>
-                            }
-                            else
-                            {
-                                <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @savingThrow.GetValue() &nbsp;</span>
-                            }
+                                {
+                                    <span style="font-size: 20px; text-decoration: underline;"> @savingThrow.GetValue() &nbsp;</span>
+                                }
+                                else
+                                {
+                                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @savingThrow.GetValue() &nbsp;</span>
+                                }
                             }
                             @savingThrow.Stat.Decription
                         </p>
@@ -158,50 +168,88 @@
                         <p>@equipment.Name</p>
                     }
                 </div>
-
-
             </div>
         </div>
 
         <p></p>
         <p></p>
-        <div class="spellOverview">
-
-            <div class="right">
-                <h1>Cantrips</h1>
-                @foreach (var spell in cha.Cantrips)
+        <div class="grid-container">
+            <div class="item1">
+                <div class="right">
+                    <h1>Cantrips</h1>
+                    @foreach (var spell in cha.GetSpellByLevel(0))
+                    {
+                        <p>@spell.OverviewText()</p>
+                    }
+                </div>
+                @for (var spellLvl = 1; spellLvl < 2; spellLvl++)
                 {
-                    <p>@spell.OverviewText()</p>
+
+                    var spells = cha.GetSpellByLevel(spellLvl);
+                    var spellSlots = cha.GetSpellSlotByLevel(spellLvl);
+
+
+                    if (spellSlots == 0)
+                    {
+                        continue;
+                    }
+
+                    <div class="right">
+
+                        @for (var i = 0; i < spellSlots; i++)
+                        {
+                            <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                        }
+
+                        <h1>Level @spellLvl spell</h1>
+                        @foreach (var spell in spells)
+                        {
+                            var color = spell.InClass.Contains("Cleric") ? "color:SkyBlue" : "color:DarkRed";
+                            <div style=@color>
+                                <p>
+                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                                    @spell.OverviewText()
+                                </p>
+                            </div>
+                        }
+                    </div>
                 }
             </div>
 
-            <div class="right">
-                <h1>Level 1 spell</h1>
-                @foreach (var spell in cha.Spellslvl1)
-    {
-            <p>
-                <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                @spell.OverviewText()
-            </p>
-}
-            </div>
-
-            <div class="right">
-                <h1>Level 2 spell</h1>
-                @foreach (var spell in cha.Spellslvl2)
+            <div class="item3">
+                @for (var spellLvl = 2; spellLvl < 10; spellLvl++)
                 {
-                <p>
-                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                    @spell.OverviewText()
-                </p>
+
+                    var spells = cha.GetSpellByLevel(spellLvl);
+                    var spellSlots = cha.GetSpellSlotByLevel(spellLvl);
+
+
+                    if (spellSlots == 0)
+                    {
+                        continue;
+                    }
+
+                    <div class="right">
+
+                        @for (var i = 0; i < spellSlots; i++)
+                        {
+                            <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                        }
+
+                        <h1>Level @spellLvl spell</h1>
+                        @foreach (var spell in spells)
+                        {
+                            var color = spell.InClass.Contains("Cleric") ? "color:SkyBlue" : "color:DarkRed";
+                            <div style=@color>
+                                <p>
+                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                                    @spell.OverviewText()
+                                </p>
+                            </div>
+                        }
+                    </div>
                 }
             </div>
-        </div>
-
-        <p></p>
-        <p></p>
-        <div class="backgrund">
-            <h1>Backgrund</h1>
 
         </div>
     }
