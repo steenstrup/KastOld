@@ -16,36 +16,20 @@ namespace Kast.Models.Dnd5E
         public string Description { get; set; }
         public string Damage { get; set; }
         public string DamageType { get; set; }
-
-        /*
-        public Spell(string name, string decription, string schole, string components, int level, string range, string castingTime, string duration, bool retual, string damage, string damageType)
-        {
-            Name = name;
-            Description = decription;
-            Schole = schole;
-            Components = components;
-            Level = level;
-            Range = range;
-            CastingTime = castingTime;
-            Duration = duration;
-            Retual = retual;
-            Damage = damage;
-            DamageType = damageType;
-        }
-
-        public string OverviewText()
+        
+        public string Overview()
         {
             var res = Name;
 
             if (Retual)
                 res += "(r)";
 
-            if (Damage != "")
+            if (Damage != null && DamageType != null)
                 res += " " + Damage + " " + DamageType; 
             
             return res;
         }
-        */
+        
     }
 
     public class SpellBuilder

@@ -126,7 +126,7 @@
                         <p>@equipment.Name -- @cha.ProfBonus -- @equipment.Damage / @equipment.DamageType</p>
                     }
 
-                    @foreach (var spell in @cha.Spells.Where(x => x.Prepart).Where(x => x.Damage != ""))
+                    @foreach (var spell in @cha.Spells.Where(x => x.Damage != ""))
                     {
                         <p>@spell.Name -- @cha.SpellIntBonus -- @spell.Damage / @spell.DamageType</p>
                     }
@@ -179,7 +179,7 @@
                     <h1>Cantrips</h1>
                     @foreach (var spell in cha.GetSpellByLevel(0))
                     {
-                        <p>@spell.OverviewText()</p>
+                        <p>@spell.Name</p>
                     }
                 </div>
                 @for (var spellLvl = 1; spellLvl < 2; spellLvl++)
@@ -204,11 +204,11 @@
                         <h1>Level @spellLvl spell</h1>
                         @foreach (var spell in spells)
                         {
-                            var color = spell.InClass.Contains("Cleric") ? "color:SkyBlue" : "color:DarkRed";
+                            var color = "color:DarkRed";
                             <div style=@color>
                                 <p>
                                     <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                    @spell.OverviewText()
+                                    @spell.Name
                                 </p>
                             </div>
                         }
@@ -239,11 +239,11 @@
                         <h1>Level @spellLvl spell</h1>
                         @foreach (var spell in spells)
                         {
-                            var color = spell.InClass.Contains("Cleric") ? "color:SkyBlue" : "color:DarkRed";
+                            var color = "color:DarkRed";
                             <div style=@color>
                                 <p>
                                     <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                    @spell.OverviewText()
+                                    @spell.Name
                                 </p>
                             </div>
                         }

@@ -2,7 +2,7 @@
 
 namespace Kast.Models.Dnd5E
 {
-    interface ISpellRepository
+    public interface ISpellRepository
     {
         IEnumerable<Spell> Spells { get; }
 

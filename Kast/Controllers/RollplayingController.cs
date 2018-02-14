@@ -1,6 +1,7 @@
 ﻿using Kast.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Kast.Models.Dnd5E;
 using Kast.Models.Repositorys;
 
 namespace Kast.Controllers 
@@ -8,7 +9,7 @@ namespace Kast.Controllers
     public class RollplayingController : Controller
     {
         private readonly ICharecterRepository _charecterRepository;
-
+        
         public RollplayingController(ICharecterRepository charecterRepository)
         {
             _charecterRepository = charecterRepository;
@@ -18,6 +19,6 @@ namespace Kast.Controllers
         {
             return View(_charecterRepository.Charecters.Where(c => c.CharacterId == id));
         }
-
+        
     }
 }

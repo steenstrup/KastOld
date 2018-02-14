@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Kast.Models.Dnd5E.Spell>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DnD 5 spell Description</title>
+</head>
+<body>
+    @foreach (var spell in Model.Where(s => s.Description != null))
+    {
+    <div style="width: 100mm; height: 97mm; border-style: solid;border-width: 2px; float: left">
+        <p>
+            @spell.Name<br /><br />
+            @spell.Schole @spell.Level<br/>
+            Casting Time: @spell.CastingTime<br/>
+            Range: @spell.Range<br/>
+            Components: @spell.Components<br/>
+            Duration: @spell.Duration
+        </p>
+        <p> @spell.Description</p>
+
+
+    </div>
+    }
+</body>
