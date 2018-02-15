@@ -30,10 +30,24 @@ namespace Kast.Controllers
             return View(await _context.Spells.ToListAsync());
         }
 
-        // GET: Spells/SpellsDescription
-        public async Task<IActionResult> SpellsDescription()
+        // GET: Spells/spells/level
+        public async Task<IActionResult> Spells(int level)
         {
-            return View(await _context.Spells.ToListAsync());
+            return View(await _context.Spells.Where(x => x.Level == level).ToListAsync());
+        }
+
+        // GET: Spells/SpellsDescription
+       // public async Task<IActionResult> SpellsDescription()
+        //{
+       //     return View(await _context.Spells.ToListAsync());
+        //}
+
+        // GET: Spells/SpellsDescription
+        public async Task<IActionResult> SpellsDescription(int? level)
+        {
+            if (level == null)
+                return View(await _context.Spells.ToListAsync());
+            return View(await _context.Spells.Where(x => x.Level == level).ToListAsync());
         }
 
         // GET: Spells/Details/5
