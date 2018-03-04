@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+
+
+    <div class="Dnd5Border">
+        <h3 style="text-align: center">Attaks and SpellCasting</h3>
+        @foreach (var equipment in Model.First().Equipments.Where(x => x.IsEquipped).Where(x => x.Damage != null))
+        {
+            <p>@equipment.Name : +@Model.First().ProfBonus | @equipment.Damage  @equipment.DamageType</p>
+        }
+
+        @foreach (var spell in @Model.First().WizzardSpells.Where(x => x.Damage != null))
+        {
+            <p>@spell.Name : +@Model.First().SpellIntBonus | @spell.Damage  @spell.DamageType</p>
+        }
+        @foreach (var spell in @Model.First().ClericSpells.Where(x => x.Damage != null))
+        {
+            <p>@spell.Name : +@Model.First().SpellWisBonus | @spell.Damage  @spell.DamageType</p>
+        }
+
+    </div>

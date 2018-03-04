@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+
+<div class="Dnd5Border">
+    <h3 style="text-align: center">Saving Throws</h3>
+    @foreach (var savingThrow in Model.First().SavingThrows)
+    {
+        <p>
+            @{
+                if (@savingThrow.IsProfesion())
+                {
+                    <i class="fa fa-circle" style="font-size: 16px;"></i>
+                }
+                else
+                {
+                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                }
+                <span> &nbsp; </span>
+                if (@savingThrow.GetValue() < 0)
+                {
+                    <span style="font-size: 20px; text-decoration: underline;"> @savingThrow.GetValue() &nbsp;</span>
+                }
+                else
+                {
+                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @savingThrow.GetValue() &nbsp;</span>
+                }
+            }
+            @savingThrow.Stat.Decription
+        </p>
+    }
+</div>

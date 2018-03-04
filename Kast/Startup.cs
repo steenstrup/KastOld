@@ -44,6 +44,7 @@ namespace Kast
             app.UseMvc(routes =>
             {
                 routes.MapRoute("default", "{controller=Topic}/{action=Home}/{id?}");
+                //routes.MapRoute("default", "{controller=Rollplaying}/{action=Dnd5EEquipment}/{id?}");
             });
         }
     }

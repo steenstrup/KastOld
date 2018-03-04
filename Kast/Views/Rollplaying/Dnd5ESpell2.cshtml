@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+
+@{
+    var WizzardSpells = Model.First().GetWizzardSpellByLevel(2);
+    var ClaricSpells = Model.First().GetClericSpellByLevel(2);
+    var spellSlots = Model.First().GetSpellSlotByLevel(2);
+
+    <div class="Dnd5Border">
+
+        @for (var i = 0; i < spellSlots; i++)
+        {
+            <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+        }
+
+        <h1>Level 2 spell</h1>
+        @foreach (var spell in WizzardSpells)
+        {
+            var color = "color:DarkRed";
+            <div style=@color>
+                <p>
+                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                    @spell.Name
+                </p>
+            </div>
+        }
+        @foreach (var spell in ClaricSpells)
+        {
+            var color = "color:Blue";
+            <div style=@color>
+                <p>
+                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                    @spell.Name
+                </p>
+            </div>
+        }
+    </div>
+}

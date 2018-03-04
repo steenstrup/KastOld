@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Stat>
+
+<div class="Dnd5Border">
+    <h3 style="text-align: center">Stats</h3>
+    @foreach (var stat in Model)
+    {
+        <p style="text-align: center">@stat.Decription</p>
+        <p style="text-align: center; font-size: 30px; line-height: 0px">@stat.Value</p>
+        <p style="text-align: center">@stat.Modifire</p>
+    }
+</div>
