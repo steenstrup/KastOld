@@ -19,6 +19,11 @@ namespace Kast.Controllers
         {
             return View(_charecterRepository.Charecters.Where(c => c.CharacterId == id));
         }
-        
+
+        public ViewResult Dnd5EEquipment(int id)
+        {
+            return View(_charecterRepository.Charecters.Where(c => c.CharacterId == id));
+        }
+
     }
 }

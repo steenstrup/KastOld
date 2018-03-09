@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+
+<div class="Dnd5Border">
+    <h3 style="text-align: center;">Features & Traits</h3>
+    @foreach (var featuresAndTraits in Model.First().FeaturesAndTraits)
+    {
+        <p>@featuresAndTraits.Name</p>
+    }
+</div>

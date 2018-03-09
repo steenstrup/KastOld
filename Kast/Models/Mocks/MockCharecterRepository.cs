@@ -97,6 +97,8 @@ namespace Kast.Models.Mocks
                     
                 };
 
+                var magicItems = new List<string> { "Googgles of Dwarf Identification", "The Identificed Cube", "Dwarfen Armor of HeadenHeim" };
+
                 var equipmentEquiped = new List<string> {"Half plate", "Shield", "Dagger"};
 
                 var backpack = new List<string> { "Hat", "Dimon", "Pensle", "Component pouch", "Ink", "Pen", "Papier", "Clothes, Worm", "Clothes, common", "Rations", "Wather skin", "Herp pack", "rope", "Vin", "Gold bar" };
@@ -108,25 +110,34 @@ namespace Kast.Models.Mocks
                         x.IsEquipped = true;
                         return x;
                     })
-                    .Union(EquipmentsBuilder.DefualdEquipmentBuilder().LoadAdventuringGear().Build().Where(x => backpack.Contains(x.Name)));
+                    .Union(EquipmentsBuilder.DefualdEquipmentBuilder()
+                        .LoadAdventuringGear().Build().Where(x => backpack.Contains(x.Name)))
+                    .Union(EquipmentsBuilder.DefualdEquipmentBuilder()
+                        .LoadMagicItems().Build().Where(x => magicItems.Contains(x.Name)));
 
                 var cantrip = new List<string> { "Light", "Fire Bolt", "Mending", "Message", "Minor Illusion", "Prestidigitation", "Guidance", "Thaumaturgy" };
                 var lvl1Spell = new List<string> { "Arnold's World snap", "Chromatic Orb", "Detect Magic", "Expeditious Retreat", "Feather Fall", "Find Familiar", "Identify", "Shield", "Sleep", "Tenser's Floating Disk", "Unseen Servant"};
                 var lvl1ClericSpell = new List<string> { "Bane", "Bless", "Command", "Create or Destroy Water", "Cure Wounds", "Detect Evil and Good", "Detect Poison and Disease", "Guiding Bold", "Healing Word", "Inflict Wounds", "Protection from Evil and Good", "Purify Food and Drink", "Sanctuary", "Shield of Faith"};
 
-                var lvl2Spell = new List<string> { "Belfor's Heavy Crush", "Weight of the world", "Blur", "Rope Trick", "Suggestion", "Skywrite" };
+                var lvl2Spell = new List<string> { "Belfor's Heavy Crush", "Weight of the world", "Mirre Image", "Rope Trick", "Suggestion", "Skywrite" };
 
-                var spells = SpellBuilder.DefualdSpellBuilder()
+                var wizzardSpells = SpellBuilder.DefualdSpellBuilder()
                     .LoadCantrip().LoadLvl1Spell().LoadLvl2Spell().Build()
-                    .Where(x => cantrip.Contains(x.Name) || lvl1Spell.Contains(x.Name) || lvl1ClericSpell.Contains(x.Name)|| lvl2Spell.Contains(x.Name));
-                
+                    .Where(x => cantrip.Contains(x.Name) || lvl1Spell.Contains(x.Name) || lvl2Spell.Contains(x.Name));
+
+                var clericSpells = SpellBuilder.DefualdSpellBuilder()
+                    .LoadCantrip().LoadLvl1Spell().LoadLvl2Spell().Build()
+                    .Where(x => lvl1ClericSpell.Contains(x.Name));
+
+
                 return new List<Character>()
                 {
                     new Character("Akercera", "Kasper Steenstrup", race, backgrund, classes, stats, 37)
                     {
                         CharacterId = 1,
                         Equipments = equipment,
-                        Spells = spells
+                        WizzardSpells = wizzardSpells,
+                        ClericSpells = clericSpells
                     }
                 };
             }

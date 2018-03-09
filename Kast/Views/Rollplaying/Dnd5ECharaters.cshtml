@@ -1,257 +1,58 @@
 ﻿@model IEnumerable<Kast.Models.DnD5E.Character>
 
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Content/Style.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>DnD 5 Edition Charaters</title>
-</head>
-<body>
-    @foreach (var cha in Model)
-    {
+ <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Content/Style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <title>@Model.FirstOrDefault()?.CharacterName</title>
+
+    </head>
+
+    <body>
         <div class="grid-container">
+
             <div class="item1">
-                <div class="desription">
-                    <h2>@cha.CharacterName</h2>
-                </div>
-
-                <div class="desription">
-                    <img src="https://cf.geekdo-images.com/images/pic1670522.jpg">
-                </div>
-
-                <div class="desription">
-                    <h3>@cha.PlayerName</h3>
-                    <h3>@cha.Race @cha.Background.Name</h3>
-                    <h3>@cha.ClassesToString()</h3>
-                </div>
-
-
-
+                @Html.Partial("Dnd5EName", @Model.FirstOrDefault()?.CharacterName)
+                @Html.Partial("Dnd5EImage")
+                @Html.Partial("Dnd5EDescription", @Model.FirstOrDefault())
             </div>
 
             <div class="item2">
-                <div class="stats">
-                    <h3 style="text-align: center">Stats</h3>
-                    @foreach (var stat in cha.Stats)
-                    {
-                        <p style="text-align: center">@stat.Decription</p>
-                        <p style="text-align: center; font-size: 30px; line-height: 0px">@stat.Value</p>
-                        <p style="text-align: center">@stat.Modifire</p>
-                    }
-                </div>
+                @Html.Partial("Dnd5EStats", @Model.FirstOrDefault()?.Stats)
             </div>
 
             <div class="item3">
-
-                <div class="skils">
-                    <p>Armor Class @cha.ArmorClass</p>
-                    <p>Initative @cha.Initiative</p>
-                    <p>Speed @cha.Speed</p>
-                    <p>Hit Point @cha.HitPoint</p>
-                    <p>Passive Perception @cha.PassivePerception</p>
-                    <p>Proficiency Bonus @cha.ProfBonus</p>
-                    <p>Hit Dice @cha.HirDice</p>
-                    <p>Carring @cha.CarringCapasity / @cha.Carring</p>
-                </div>
-
-                <div class="skils">
-                    <h3 style="text-align: center">Skills</h3>
-                    @foreach (var skill in cha.Skills)
-                    {
-                        <p>
-                            @{
-                                if (@skill.IsProfesion)
-                                {
-                                    <i class="fa fa-circle" style="font-size: 16px;"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                }
-                                <span> &nbsp; </span>
-                                if (@skill.GetValue() < 0)
-                                {
-                                    <span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
-                                }
-                                else
-                                {
-                                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
-                                }
-                            }
-                            @skill.Description
-                            <span style="color: gainsboro"> (@skill.Stat.EnumStat) </span>
-                        </p>
-                    }
-                </div>
-
-                <div class="skils">
-                    <h3 style="text-align: center">Saving Throws</h3>
-                    @foreach (var savingThrow in cha.SavingThrows)
-                    {
-                        <p>
-                            @{
-                                if (@savingThrow.IsProfesion())
-                                {
-                                    <i class="fa fa-circle" style="font-size: 16px;"></i>
-                                }
-                                else
-                                {
-                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                }
-                                <span> &nbsp; </span>
-                                if (@savingThrow.GetValue() < 0)
-                                {
-                                    <span style="font-size: 20px; text-decoration: underline;"> @savingThrow.GetValue() &nbsp;</span>
-                                }
-                                else
-                                {
-                                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @savingThrow.GetValue() &nbsp;</span>
-                                }
-                            }
-                            @savingThrow.Stat.Decription
-                        </p>
-                    }
-                </div>
+                @Html.Partial("Dnd5EOverview", @Model.FirstOrDefault())
+                @Html.Partial("Dnd5ESkill", @Model.FirstOrDefault()?.Skills)
+                @Html.Partial("Dnd5ESavingThrow", @Model.FirstOrDefault()?.SavingThrows)
             </div>
 
             <div class="item4">
-                <div class="right">
-                    <h3 style="text-align: center">Attaks and SpellCasting</h3>
-                    @foreach (var equipment in cha.Equipments.Where(x => x.IsEquipped).Where(x => x.Damage != null))
-                    {
-                        <p>@equipment.Name -- @cha.ProfBonus -- @equipment.Damage / @equipment.DamageType</p>
-                    }
-
-                    @foreach (var spell in @cha.Spells.Where(x => x.Damage != ""))
-                    {
-                        <p>@spell.Name -- @cha.SpellIntBonus -- @spell.Damage / @spell.DamageType</p>
-                    }
-                </div>
-
-                <div class="right">
-                    <h3 style="text-align: center">Languages</h3>
-                    @foreach (var prof in cha.Languages)
-                    {
-                        <p>@prof</p>
-                    }
-                </div>
-
-                <div class="right">
-                    <h3 style="text-align: center">Features & Traits</h3>
-                    @foreach (var featuresAndTraits in cha.FeaturesAndTraits)
-                    {
-                        <p>@featuresAndTraits.Name</p>
-                    }
-                </div>
-
-
+                @Html.Partial("Dnd5EAttaksAndSpellCasting")
+                @Html.Partial("Dnd5ELanguages", @Model.FirstOrDefault()?.Languages)
+                @Html.Partial("Dnd5EFeaturesAndTraits")
             </div>
 
             <div class="item5">
-
-                <div class="right">
-                    <h3 style="text-align: center">Weapon, Armor and Tools profiencies</h3>
-                    @foreach (var prof in cha.ArmorToolAndWeaponProf)
-                    {
-                        <p>@prof</p>
-                    }
-                </div>
-
-                <div class="right">
-                    <h3 style="text-align: center">Equipment</h3>
-                    @foreach (var equipment in cha.Equipments)
-                    {
-                        <p>@equipment.Name</p>
-                    }
-                </div>
+                @Html.Partial("Dnd5EWeaponArmorAndTools")
+                @Html.Partial("Dnd5EEquipment", @Model.FirstOrDefault()?.Equipments)
             </div>
         </div>
 
-        <p></p>
-        <p></p>
+        <p></p><p></p>
+
         <div class="grid-container">
             <div class="item1">
-                <div class="right">
-                    <h1>Cantrips</h1>
-                    @foreach (var spell in cha.GetSpellByLevel(0))
-                    {
-                        <p>@spell.Name</p>
-                    }
-                </div>
-                @for (var spellLvl = 1; spellLvl < 2; spellLvl++)
-                {
-
-                    var spells = cha.GetSpellByLevel(spellLvl);
-                    var spellSlots = cha.GetSpellSlotByLevel(spellLvl);
-
-
-                    if (spellSlots == 0)
-                    {
-                        continue;
-                    }
-
-                    <div class="right">
-
-                        @for (var i = 0; i < spellSlots; i++)
-                        {
-                            <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                        }
-
-                        <h1>Level @spellLvl spell</h1>
-                        @foreach (var spell in spells)
-                        {
-                            var color = "color:DarkRed";
-                            <div style=@color>
-                                <p>
-                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                    @spell.Name
-                                </p>
-                            </div>
-                        }
-                    </div>
-                }
+                @Html.Partial("Dnd5ECantrip")
+                @Html.Partial("Dnd5ESpell1")
             </div>
-
             <div class="item3">
-                @for (var spellLvl = 2; spellLvl < 10; spellLvl++)
-                {
-
-                    var spells = cha.GetSpellByLevel(spellLvl);
-                    var spellSlots = cha.GetSpellSlotByLevel(spellLvl);
-
-
-                    if (spellSlots == 0)
-                    {
-                        continue;
-                    }
-
-                    <div class="right">
-
-                        @for (var i = 0; i < spellSlots; i++)
-                        {
-                            <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                        }
-
-                        <h1>Level @spellLvl spell</h1>
-                        @foreach (var spell in spells)
-                        {
-                            var color = "color:DarkRed";
-                            <div style=@color>
-                                <p>
-                                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                                    @spell.Name
-                                </p>
-                            </div>
-                        }
-                    </div>
-                }
+                @Html.Partial("Dnd5ESpell2")
             </div>
-
         </div>
-    }
-</body>
+    </body>
 </html>

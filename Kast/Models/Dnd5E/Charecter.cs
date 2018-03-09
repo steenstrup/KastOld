@@ -142,11 +142,17 @@ namespace Kast.Models.DnD5E
 
         public IEnumerable<Equipment> Equipments { get; set; }
 
-        public IEnumerable<Spell> Spells { get; set; }
+        public IEnumerable<Spell> WizzardSpells { get; set; }
+        public IEnumerable<Spell> ClericSpells { get; set; }
 
-        public IEnumerable<Spell> GetSpellByLevel(int i)
+        public IEnumerable<Spell> GetWizzardSpellByLevel(int i)
         {
-            return Spells.Where(x => x.Level == i);
+            return WizzardSpells.Where(x => x.Level == i);
+        }
+
+        public IEnumerable<Spell> GetClericSpellByLevel(int i)
+        {
+            return ClericSpells.Where(x => x.Level == i);
         }
 
         public int GetSpellSlotByLevel(int i)

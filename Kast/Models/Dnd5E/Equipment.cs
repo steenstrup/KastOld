@@ -37,6 +37,8 @@ namespace Kast.Models.Dnd5E
 
         public int Weight { get; }
 
+        public bool Magical { get; set; }
+
         // Armor information
         public ArmorType ArmorType { get; private set; }
 
@@ -54,7 +56,7 @@ namespace Kast.Models.Dnd5E
         public string DamageType { get; set; }
 
         public string WeaponProperties { get; set; }
-        
+
         public Equipment(string name, BodySlots bodyslot, int cost, int weight)
         {
             Name = name;
@@ -155,7 +157,6 @@ namespace Kast.Models.Dnd5E
 
         public EquipmentsBuilder LoadAdventuringGear()
         {
-
             // added ordered by alphabet
             _equipments.Add(new Equipment("Abacus", BodySlots.Backpack, 2, 2).AdventuringGear());
             _equipments.Add(new Equipment("Acid (vial)", BodySlots.Backpack, 25, 1).AdventuringGear());
@@ -237,6 +238,10 @@ namespace Kast.Models.Dnd5E
         public EquipmentsBuilder LoadMagicItems()
         {
             // add all Magic Items to _equipments
+            _equipments.Add(new Equipment("Googgles of Dwarf Identification", BodySlots.Head, 0, 0) { Magical = true});
+            _equipments.Add(new Equipment("The Identificed Cube", BodySlots.Backpack, 0, 0) { Magical = true });
+            _equipments.Add(new Equipment("Dwarfen Armor of HeadenHeim", BodySlots.Body, 50, 45) { Magical = true }
+                .Armor(ArmorType.Medium, 14, 0, true));
 
             return this;
 
