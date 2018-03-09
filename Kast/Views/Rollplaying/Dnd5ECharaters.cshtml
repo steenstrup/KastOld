@@ -17,16 +17,13 @@
 
             <div class="item1">
                 @Html.Partial("Dnd5EName", @Model.FirstOrDefault()?.CharacterName)
-                @Html.Partial("Dnd5EImage")
                 @Html.Partial("Dnd5EDescription", @Model.FirstOrDefault())
-            </div>
-
-            <div class="item2">
+                @Html.Partial("Dnd5EOverview", @Model.FirstOrDefault())
                 @Html.Partial("Dnd5EStats", @Model.FirstOrDefault()?.Stats)
             </div>
-
+            
             <div class="item3">
-                @Html.Partial("Dnd5EOverview", @Model.FirstOrDefault())
+                @Html.Partial("Dnd5EImage")
                 @Html.Partial("Dnd5ESkill", @Model.FirstOrDefault()?.Skills)
                 @Html.Partial("Dnd5ESavingThrow", @Model.FirstOrDefault()?.SavingThrows)
             </div>
@@ -48,11 +45,19 @@
         <div class="grid-container">
             <div class="item1">
                 @Html.Partial("Dnd5ECantrip")
-                @Html.Partial("Dnd5ESpell1")
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 1 } })
             </div>
             <div class="item3">
-                @Html.Partial("Dnd5ESpell2")
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 2 } })
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 3 } })
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 4 } })
             </div>
+            <div class="item5">
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 5 } })
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 6 } })
+                @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 7 } })
+            </div>
+
         </div>
     </body>
 </html>

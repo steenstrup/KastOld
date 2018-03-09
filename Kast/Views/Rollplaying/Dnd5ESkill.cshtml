@@ -1,31 +1,31 @@
-﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+﻿@model IEnumerable<Kast.Models.DnD5E.Skill>
 
-    <div class="Dnd5Border">
-        <h3 style="text-align: center">Skills</h3>
-        @foreach (var skill in Model.First().Skills)
-        {
-            <p>
-                @{
-                    if (@skill.IsProfesion)
-                    {
-                        <i class="fa fa-circle" style="font-size: 16px;"></i>
-                    }
-                    else
-                    {
-                        <i class="fa fa-circle-o" style="font-size: 16px;"></i>
-                    }
-                    <span> &nbsp; </span>
-                    if (@skill.GetValue() < 0)
-                    {
-                        <span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
-                    }
-                    else
-                    {
-                        <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
-                    }
+            <div class="Dnd5Border">
+    <h3 style="text-align: center">Skills</h3>
+    @foreach (var skill in Model)
+    {
+        <p>
+            @{
+                if (@skill.IsProfesion)
+                {
+                    <i class="fa fa-circle" style="font-size: 16px;"></i>
                 }
-                @skill.Description
-                <span style="color: gainsboro"> (@skill.Stat.EnumStat) </span>
-            </p>
-        }
-    </div>
+                else
+                {
+                    <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+                }
+                <span> &nbsp; </span>
+                if (@skill.GetValue() < 0)
+                {
+                    <span style="font-size: 20px; text-decoration: underline;"> @skill.GetValue() &nbsp;</span>
+                }
+                else
+                {
+                    <span style="font-size: 20px; text-decoration: underline;"> &nbsp; @skill.GetValue() &nbsp;</span>
+                }
+            }
+            @skill.Description
+            <span style="color: gainsboro"> (@skill.Stat.EnumStat) </span>
+        </p>
+    }
+</div>

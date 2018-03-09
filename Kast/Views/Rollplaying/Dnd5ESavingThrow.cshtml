@@ -1,8 +1,8 @@
-﻿@model IEnumerable<Kast.Models.DnD5E.Character>
+﻿@model IEnumerable<Kast.Models.DnD5E.SavingThrow>
 
 <div class="Dnd5Border">
     <h3 style="text-align: center">Saving Throws</h3>
-    @foreach (var savingThrow in Model.First().SavingThrows)
+    @foreach (var savingThrow in Model)
     {
         <p>
             @{

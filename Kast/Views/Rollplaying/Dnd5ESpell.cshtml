@@ -1,0 +1,43 @@
+﻿@model Kast.Models.DnD5E.Character
+
+@{
+    int level = Convert.ToInt32(ViewData["level"]);
+    var wizzardSpells = Model.GetWizzardSpellByLevel(level);
+    var claricSpells = Model.GetClericSpellByLevel(level);
+    var spellSlots = Model.GetSpellSlotByLevel(level);
+    if (spellSlots > 0)
+    { 
+
+        <div class="Dnd5Border">
+
+            @for (var i = 0; i < spellSlots; i++)
+            {
+                <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+            }
+
+            <h1>Level @level spell</h1>
+            @foreach (var spell in wizzardSpells)
+            {
+                var color = "color:DarkRed";
+                var icon = spell.Retual ? "fa-registered" : "fa-circle-o";
+                <div style=@color>
+                    <p>
+                        <i class="fa @icon" style="font-size: 16px;"></i>
+                        @spell.Name
+                    </p>
+                </div>
+            }
+            @foreach (var spell in claricSpells)
+            {
+                var color = "color:Blue";
+                var icon = spell.Retual ? "fa-registered" : "fa-circle-o";
+                <div style=@color>
+                    <p>
+                        <i class="fa @icon" style="font-size: 16px;"></i>
+                        @spell.Name
+                    </p>
+                </div>
+            }
+        </div>
+    }
+}
