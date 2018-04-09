@@ -1,0 +1,19 @@
+@model Kast.Roleplaying.Models.Dnd5Edition.SpellBook
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/site.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@Model.name</title>
+</head>
+
+<body>
+    <h1>@Model.name</h1>
+    @Html.Partial("Spellbook", @Model, new ViewDataDictionary(ViewData) { { "level", 0 }, { "spellSlots", 1 } })
+    @Html.Partial("Spellbook", @Model, new ViewDataDictionary(ViewData) { { "level", 1 }, { "spellSlots", 2 } })
+    @Html.Partial("Spellbook", @Model, new ViewDataDictionary(ViewData) { { "level", 2 }, { "spellSlots", 3 } })
+    @Html.Partial("Spellbook", @Model, new ViewDataDictionary(ViewData) { { "level", 3 }, { "spellSlots", 4 } })
+    @Html.Partial("Spellbook", @Model, new ViewDataDictionary(ViewData) { { "level", 4 }, { "spellSlots", 5 } })
+</body>

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kast.Models.DnD5E;
+using Kast.Models.Dnd5E;
 
 namespace Kast.Models.Dnd5E
 {
@@ -15,7 +15,7 @@ namespace Kast.Models.Dnd5E
 
         IEnumerable<string> ArmorToolAndWeaponProf { get; set; }
 
-        IEnumerable<FeaturesAndTraits> FeaturesAndTraitsProf { get; set; }
+        IEnumerable<FeatureAndTrait> FeaturesAndTraitsProf { get; set; }
 
     }
 }

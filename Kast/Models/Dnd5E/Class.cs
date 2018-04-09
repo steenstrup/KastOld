@@ -1,7 +1,7 @@
 ﻿using Kast.Models.Dnd5E;
 using System.Collections.Generic;
 
-namespace Kast.Models.DnD5E
+namespace Kast.Models.Dnd5E
 {
     public class DndClass : IProfesion
     {
@@ -14,7 +14,7 @@ namespace Kast.Models.DnD5E
             LanguageProf = new List<string>();
             SavingThrowProf = new List<Stat>();
             ArmorToolAndWeaponProf = new List<string>();
-            FeaturesAndTraitsProf = new List<FeaturesAndTraits>();
+            FeaturesAndTraitsProf = new List<FeatureAndTrait>();
         }
 
         public DndClass(string name, int level,
@@ -39,6 +39,6 @@ namespace Kast.Models.DnD5E
         public IEnumerable<string> LanguageProf { get; set; }
         public IEnumerable<Stat> SavingThrowProf { get; set; }
         public IEnumerable<string> ArmorToolAndWeaponProf { get; set; }
-        public IEnumerable<FeaturesAndTraits> FeaturesAndTraitsProf { get; set; }
+        public IEnumerable<FeatureAndTrait> FeaturesAndTraitsProf { get; set; }
     }
 }

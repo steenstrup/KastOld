@@ -1,4 +1,4 @@
-﻿namespace Kast.Models.DnD5E
+﻿namespace Kast.Models.Dnd5E
 {
     public class Money
     {

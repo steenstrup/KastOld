@@ -9,10 +9,12 @@ namespace Kast.Controllers
     public class RollplayingController : Controller
     {
         private readonly ICharecterRepository _charecterRepository;
-        
-        public RollplayingController(ICharecterRepository charecterRepository)
+        private readonly Dnd5EContext _context;
+
+        public RollplayingController(ICharecterRepository charecterRepository, Dnd5EContext context)
         {
             _charecterRepository = charecterRepository;
+            _context = context;
         }
         
         public ViewResult Dnd5ECharaters(int id)

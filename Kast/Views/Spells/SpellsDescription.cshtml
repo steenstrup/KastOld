@@ -9,7 +9,7 @@
     <title>DnD 5 spell Description</title>
 </head>
 <body>
-    @foreach (var spell in Model.Where(s => s.Description != null).OrderBy(x => x.Description.Length))
+    @foreach (var spell in Model.OrderBy(x => x.Description.Length))
     {
         <div style="width: 98mm; margin: 2px; float: left">
             <p>

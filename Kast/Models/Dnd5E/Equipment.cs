@@ -24,38 +24,30 @@ namespace Kast.Models.Dnd5E
 
     public class Equipment
     {
+        public int equipmentId { get; set; }
+
         // General Information
-        public string Name { get; }
-
+        public string Name { get; set; }
         public bool IsEquipped { get; set; }
-
-        public BodySlots Slot { get; }
-
-        public EquipmentType EquipmentType { get; private set; }
-
-        public int Cost { get; }
-
-        public int Weight { get; }
-
+        public BodySlots Slot { get; set; }
+        public EquipmentType EquipmentType { get; set; }
+        public int Cost { get; set; }
+        public int Weight { get; set; }
         public bool Magical { get; set; }
 
         // Armor information
         public ArmorType ArmorType { get; private set; }
-
         public int Ac { get; private set; }
-
         public int StrengthRequament { get; private set; }
-
         public bool StealthInpetement { get; private set; }
 
         // Weapon information
         public WeaponType WeaponType { get; private set; }
-
         public string Damage { get; set; }
-
         public string DamageType { get; set; }
-
         public string WeaponProperties { get; set; }
+
+        public Equipment() { }
 
         public Equipment(string name, BodySlots bodyslot, int cost, int weight)
         {
@@ -244,7 +236,6 @@ namespace Kast.Models.Dnd5E
                 .Armor(ArmorType.Medium, 14, 0, true));
 
             return this;
-
         }
         
         public EquipmentsBuilder AddEquipment(Equipment equipment)

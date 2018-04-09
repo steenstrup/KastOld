@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Kast.Models.DnD5E
+namespace Kast.Models.Dnd5E
 {
     public class Skill
     {

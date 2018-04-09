@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kast.Models.DnD5E
+namespace Kast.Models.Dnd5E
 {
     public enum EnumStats { Str, Dex, Con, Int, Wis, Cha};
 

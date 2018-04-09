@@ -1,7 +1,7 @@
 ﻿using Kast.Models.Dnd5E;
 using System.Collections.Generic;
 
-namespace Kast.Models.DnD5E
+namespace Kast.Models.Dnd5E
 {
     public class Race : IProfesion
     {
@@ -15,7 +15,7 @@ namespace Kast.Models.DnD5E
 
         public IEnumerable<string> ArmorToolAndWeaponProf { get; set; }
 
-        public IEnumerable<FeaturesAndTraits> FeaturesAndTraitsProf { get; set; }
+        public IEnumerable<FeatureAndTrait> FeaturesAndTraitsProf { get; set; }
 
         public string Name { get; set; }
 

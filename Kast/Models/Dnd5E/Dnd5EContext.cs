@@ -8,6 +8,10 @@ namespace Kast.Models.Dnd5E
             : base(options)
         { }
 
+        public DbSet<Character> Characters { get; set; }
         public DbSet<Spell> Spells { get; set; }
+        public DbSet<Equipment> Equipments { get; set; }
+        public DbSet<FeatureAndTrait> FeaturesAndTraits { get; set; }
+
     }
 }

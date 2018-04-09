@@ -1,0 +1,24 @@
+﻿@model Kast.Roleplaying.Models.Dnd5Edition.SpellBook
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DnD 5 spell Description</title>
+</head>
+<body>
+    @foreach (var spell in Model.Spells.OrderBy(x => x.Name))
+    {
+        <div style="width: 98mm; margin: 2px; float: left">
+            <p>
+                <font color="DarkRed"> @spell.Name</font><br /><br />
+                @spell.Schole @spell.Level &emsp; &emsp; Casting Time: @spell.CastingTime<br />
+                Range: @spell.Range &emsp; Duration: @spell.Duration <br />
+                Components: @spell.Components
+            </p>
+            <p> @spell.Description</p>
+        </div>
+    }
+</body>

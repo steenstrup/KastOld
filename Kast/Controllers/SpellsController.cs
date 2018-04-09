@@ -19,9 +19,20 @@ namespace Kast.Controllers
         public async Task<IActionResult> SpellsDescription(int? level)
         {
             if (level == null)
-                return View(await _context.Spells.ToListAsync());
-            return View(await _context.Spells.Where(x => x.Level == level).ToListAsync());
+            {
+                return View(await _context.Spells.Where(x => x.Description != null).ToListAsync());
+            }
+            return View(await _context.Spells.Where(x => x.Level == level).Where(x => x.Description != null).ToListAsync());
         }
-        
+
+        // GET: Spells/Charecter
+        public async Task<IActionResult> Charecter(int? level)
+        {
+            var t = await _context.Characters.ToListAsync();
+
+            return View(t);
+        }
+
+
     }
 }

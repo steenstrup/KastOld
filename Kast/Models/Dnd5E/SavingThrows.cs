@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Kast.Models.Dnd5E;
 using System.Linq;
 
-namespace Kast.Models.DnD5E
+namespace Kast.Models.Dnd5E
 {
     public class SavingThrow
     {

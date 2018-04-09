@@ -1,0 +1,34 @@
+﻿@model Kast.Roleplaying.Models.Dnd5Edition.SpellBook
+
+@{
+    int level = Convert.ToInt32(ViewData["level"]);
+    int spellSlots = Convert.ToInt32(ViewData["spellSlots"]);
+    var title = level > 0 ? "Level " + level + " spell" : "Cantrip";
+    
+}
+
+<div class="Dnd5Border">
+
+    @for (var i = 0; i < spellSlots; i++)
+    {
+        <i class="fa fa-circle-o" style="font-size: 16px;"></i>
+    }
+
+    <h1>@title</h1>
+
+    @foreach (var spell in Model.Spells.Where(x => x.Level == level))
+    {
+        var icon = spell.Retual ? "fa-registered" : "fa-circle-o";
+        var color = spell.InClass == "Wizzard" ?  "color:DarkRed" : "color:Blue";
+        <div style=@color>
+            <p>
+                @if (level > 0)
+                {
+                    <i class="fa @icon" style="font-size: 16px;"></i>
+                }
+                @spell.Name
+            </p>
+        </div>
+    }
+</div>
+

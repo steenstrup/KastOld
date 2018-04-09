@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Kast.Models.Dnd5E.Character>
+
+ <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Content/Style.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <title>@Model.FirstOrDefault()?.CharacterName</title>
+
+    </head>
+
+    <body>
+       @Html.Partial("Dnd5EName", @Model.FirstOrDefault()?.CharacterName)
+       @Html.Partial("Dnd5EEquipment", @Model.FirstOrDefault()?.Equipments)
+       @Html.Partial("Dnd5ECantrip")
+       @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 1 } })
+       @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 2 } })
+       @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 3 } })
+       @Html.Partial("Dnd5ESpell", @Model.FirstOrDefault(), new ViewDataDictionary(ViewData) { { "level", 4 } })
+    </body>
+</html>

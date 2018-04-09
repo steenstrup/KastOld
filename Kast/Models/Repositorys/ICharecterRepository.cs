@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Kast.Models.DnD5E;
+using Kast.Models.Dnd5E;
 
 namespace Kast.Models.Repositorys
 {

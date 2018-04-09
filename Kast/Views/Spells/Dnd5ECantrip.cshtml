@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Kast.Models.Dnd5E.Character>
+
+<div class="Dnd5Border">
+    <h1>Cantrips</h1>
+    @foreach (var spell in Model.First().SpellByLevel(0))
+    {
+        <p>@spell.Name</p>
+    }
+</div>

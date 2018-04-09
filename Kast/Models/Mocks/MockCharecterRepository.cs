@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Kast.Models.Dnd5E;
-using Kast.Models.DnD5E;
+using Kast.Models.Dnd5E;
 using Kast.Models.Repositorys;
 
 namespace Kast.Models.Mocks
@@ -29,12 +29,12 @@ namespace Kast.Models.Mocks
                 SavingThrowProf = savingThrowProf,
                 ArmorToolAndWeaponProf = new List<string> { "Light armor", "Medium armor", "Shields", "All Simple weapons" },
                 LanguageProf = new List<string> { "Drakinc", "Undcercommen"},
-                FeaturesAndTraitsProf = new List<FeaturesAndTraits>
+                FeaturesAndTraitsProf = new List<FeatureAndTrait>
                 {
-                    new FeaturesAndTraits("SpellCasting Divine"),
-                    new FeaturesAndTraits("Knowledge Domain"),
-                    new FeaturesAndTraits("Blessing of Knowledge"),
-                    new FeaturesAndTraits("Ritual Caster (c)")
+                    new FeatureAndTrait("SpellCasting Divine"),
+                    new FeatureAndTrait("Knowledge Domain"),
+                    new FeatureAndTrait("Blessing of Knowledge"),
+                    new FeatureAndTrait("Ritual Caster (c)")
                 }
             };
         }
@@ -44,15 +44,15 @@ namespace Kast.Models.Mocks
             return new DndClass("Wizard", level)
             {
                 SkillProf = skillProf,
-                FeaturesAndTraitsProf = new List<FeaturesAndTraits>
+                FeaturesAndTraitsProf = new List<FeatureAndTrait>
                 {
-                    new FeaturesAndTraits("SpellCasting Arcane"),
-                    new FeaturesAndTraits("Arcane Recovery"),
-                    new FeaturesAndTraits("War magic"),
-                    new FeaturesAndTraits("Arcane deflection"),
-                    new FeaturesAndTraits("Tactical wit"),
-                    new FeaturesAndTraits("War Caster"),
-                    new FeaturesAndTraits("Ritual Caster (w)"),
+                    new FeatureAndTrait("SpellCasting Arcane"),
+                    new FeatureAndTrait("Arcane Recovery"),
+                    new FeatureAndTrait("War magic"),
+                    new FeatureAndTrait("Arcane deflection"),
+                    new FeatureAndTrait("Tactical wit"),
+                    new FeatureAndTrait("War Caster"),
+                    new FeatureAndTrait("Ritual Caster (w)"),
                 }
             };
         }
@@ -61,6 +61,7 @@ namespace Kast.Models.Mocks
         {
             get
             {
+                /*
                 var stats = CreateStats(8, 14, 14, 16, 14, 10);
                 
                 var classes = new List<DndClass>
@@ -76,13 +77,13 @@ namespace Kast.Models.Mocks
                     SavingThrowProf = new List<Stat>(),
                     LanguageProf = new List<string> { "Common", "Elvish", "Drawen"},
                     ArmorToolAndWeaponProf = new List<string> { "Longsword", "Shortsword", "Shortbow", "Longbow"},
-                    FeaturesAndTraitsProf = new List<FeaturesAndTraits>
+                    FeaturesAndTraitsProf = new List<FeatureAndTrait>
                     {
-                        new FeaturesAndTraits("Darkvision"),
-                        new FeaturesAndTraits("Keen Senses"),
-                        new FeaturesAndTraits("Fay Acestry"),
-                        new FeaturesAndTraits("Trance"),
-                        new FeaturesAndTraits("Cantrip")
+                        new FeatureAndTrait("Darkvision"),
+                        new FeatureAndTrait("Keen Senses"),
+                        new FeatureAndTrait("Fay Acestry"),
+                        new FeatureAndTrait("Trance"),
+                        new FeatureAndTrait("Cantrip")
                     }
                 };
 
@@ -93,14 +94,12 @@ namespace Kast.Models.Mocks
                     SavingThrowProf = new List<Stat>(),
                     LanguageProf = new List<string> { "Celestial", "Infernal" },
                     ArmorToolAndWeaponProf = new List<string>(),
-                    FeaturesAndTraitsProf = new List<FeaturesAndTraits>()
+                    FeaturesAndTraitsProf = new List<FeatureAndTrait>()
                     
                 };
 
                 var magicItems = new List<string> { "Googgles of Dwarf Identification", "The Identificed Cube", "Dwarfen Armor of HeadenHeim" };
-
                 var equipmentEquiped = new List<string> {"Half plate", "Shield", "Dagger"};
-
                 var backpack = new List<string> { "Hat", "Dimon", "Pensle", "Component pouch", "Ink", "Pen", "Papier", "Clothes, Worm", "Clothes, common", "Rations", "Wather skin", "Herp pack", "rope", "Vin", "Gold bar" };
 
                 var equipment = EquipmentsBuilder.DefualdEquipmentBuilder()
@@ -140,6 +139,9 @@ namespace Kast.Models.Mocks
                         ClericSpells = clericSpells
                     }
                 };
+                */
+
+                return new List<Character>();
             }
         }
 
